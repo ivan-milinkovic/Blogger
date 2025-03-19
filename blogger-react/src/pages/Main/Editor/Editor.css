@@ -1,0 +1,66 @@
+.editor-vertical-split {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.editor-inputs {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.editor-title {
+  display: flex;
+  flex-direction: row;
+}
+
+.editor-title input {
+  width: 100%;
+  font-size: medium;
+  outline: none;
+  border-width: 0;
+  text-align: center;
+  background-color: var(--input-bg-color);
+}
+
+.editor-toolbar {
+  display: flex;
+  justify-content: flex-start;
+  margin-right: 10px;
+}
+
+.editor-save-button {
+  color: var(--accent-color);
+}
+
+.editor-content {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  margin: 0;
+  margin-top: 4px;
+}
+
+.editor-content textarea {
+  width: 100%;
+  height: 100%;
+  resize: vertical;
+  font-size: medium;
+  outline: none;
+  border-width: 0;
+  background-color: var(--input-bg-color);
+}
+
+.editor-preview {
+  margin-top: 10px;
+}
+
+.editor-preview-label {
+  margin-top: 10px;
+  color: var(--subtle-text-color);
+}
+
+.editor-preview-markdown-container {
+  background-color: var(--input-bg-color);
+}

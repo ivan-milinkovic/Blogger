@@ -1,0 +1,20 @@
+.header {
+  text-align: left;
+}
+
+.header-row {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  align-items: center;
+  align-content: stretch;
+}
+
+.header-name {
+  flex-grow: 1;
+}
+
+.header-auth {
+  flex-grow: 1;
+  text-align: right;
+}

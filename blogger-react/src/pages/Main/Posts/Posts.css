@@ -1,0 +1,66 @@
+.posts {
+  flex-basis: auto;
+  padding: 10px;
+}
+
+.posts-actions-toolbar {
+  margin-bottom: 10px;
+}
+
+.refresh-posts-action {
+  color: var(--accent-color);
+}
+
+.create-new-post-action {
+  margin-left: 4px;
+  color: var(--accent-color);
+}
+
+.delete-post-action {
+  margin-left: 16px;
+  color: var(--accent-color);
+}
+
+.posts-list {
+  list-style-type: none;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+.posts-list-item {
+  margin: 0;
+  padding: 4px;
+  height: 2em;
+  cursor: default;
+  position: relative; /* required for divider to stick to the bottom */
+  align-items: center;
+}
+
+.posts-list-item:hover {
+  background-color: var(--subtle-color);
+}
+
+.posts-list-item-selected {
+  margin: 0;
+  padding: 4px;
+  height: 2em;
+  cursor: default;
+  position: relative; /* required for divider to stick to the bottom */
+  background-color: var(--accent-color);
+}
+
+/* make divider stick to the bottom */
+.posts-list .divider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.posts-list-post-id {
+  color: gray;
+  font-size: small;
+  float: right;
+  margin-top: 4px;
+}
