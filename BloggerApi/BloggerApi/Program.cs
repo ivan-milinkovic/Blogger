@@ -11,11 +11,11 @@ builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddDbContext<AppIdentityDbContext>(options =>
-    options.UseSqlite("Data Source=blogs-identity.sqlite")
+    options.UseSqlite("Data Source=Database/blogs-identity.sqlite")
 );
 
 builder.Services.AddDbContext<BlogsDbContext>(opts =>
-    opts.UseSqlite("Data Source=blogs.sqlite")
+    opts.UseSqlite("Data Source=Database/blogs.sqlite")
 );
 
 // builder.Services.AddAuthentication()
