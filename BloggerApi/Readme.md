@@ -6,6 +6,21 @@ Credentials:
 ivan@test
 123
 
+# Docker
+
+Start the Docker application.
+
+From the solution directory:
+``` sh
+docker build -t blogger-api ./BloggerApi
+```
+
+``` sh
+docker run --name blogger-api -p 8000:8080 -v ./BloggerApi/Database:/BloggerApi/Database -d --rm blogger-api
+```
+Container will use databases from the repository directory.
+
+
 # OpenApi
 
 http://localhost:5292/swagger/index.html
@@ -42,18 +57,6 @@ dotnet ef migrations add AddingAppIdentityUser --project BloggerApi --context Ap
 
 dotnet ef migrations add AddingAppIdentityUser --project BloggerApi --context BlogsDbContext
 ```
-
-# Docker
-
-From the solution directory:
-``` sh
-docker build -t blogger-api ./BloggerApi
-```
-
-``` sh
-docker run --name blogger-api -p 8000:8080 -v ./BloggerApi/Database:/BloggerApi/Database -d --rm blogger-api
-```
-Container will use databases from the repository directory.
 
 # Docs
 

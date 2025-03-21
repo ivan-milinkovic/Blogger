@@ -10,6 +10,8 @@ npm run devd # to target dockerized BloggerApi
 
 # Docker
 
+Start the Docker application.
+
 ``` sh
 docker build -t blogger-react .
 docker run --name blogger-react -p 80:80 -p 443:443  --rm -d blogger-react
