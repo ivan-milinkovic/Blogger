@@ -47,7 +47,7 @@ dotnet ef migrations add AddingAppIdentityUser --project BloggerApi --context Bl
 
 From the solution directory:
 ``` sh
-docker build -t blogger-api ./BloggerApi 
+docker build -t blogger-api ./BloggerApi
 ```
 
 ``` sh

@@ -1,7 +1,7 @@
 ﻿# build step
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
-WORKDIR /src/BloggerApi
+WORKDIR /BloggerApiSource
 COPY . .
 RUN dotnet restore BloggerApi.csproj
 RUN dotnet build BloggerApi.csproj -c $BUILD_CONFIGURATION -o /BloggerApiBuild
