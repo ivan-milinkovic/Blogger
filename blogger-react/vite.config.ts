@@ -8,4 +8,8 @@ export default defineConfig({
     setupFiles: ["src/__tests__/vitest-setup.ts"],
     environment: "jsdom",
   },
+  build: {
+    outDir: 'dist',
+    emptyOutDir: true
+  }
 });
