@@ -51,7 +51,7 @@ docker build -t blogger-api ./BloggerApi
 ```
 
 ``` sh
-docker run -p 8000:8080 -v ./BloggerApi/Database:/BloggerApi/Database -d --rm blogger-api
+docker run --name blogger-api -p 8000:8080 -v ./BloggerApi/Database:/BloggerApi/Database -d --rm blogger-api
 ```
 Container will use databases from the repository directory.
 

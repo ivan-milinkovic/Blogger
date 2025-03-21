@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "devd": "vite --mode devdockerapi",
     "build": "tsc -b && vite build",
     "test": "vitest",
     "lint": "eslint .",
