@@ -10,6 +10,11 @@ export function removeStoredTokens() {
   window.localStorage.removeItem(TokensKey);
 }
 
+export function updateTokens(tokens: Tokens | undefined) {
+  if (tokens) storeTokens(tokens);
+  else removeStoredTokens();
+}
+
 export function tryLoadStoredTokens(): Tokens | undefined {
   const storedTokensStr = window.localStorage.getItem(TokensKey);
   let tokens: Tokens | undefined = undefined;

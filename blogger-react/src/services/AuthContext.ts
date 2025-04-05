@@ -1,22 +1,21 @@
 import { createContext, useContext } from "react";
 import { Tokens } from "./BloggerService";
 
+export const AuthContext = createContext<AuthFunctions>(
+  makeDummyAuthFunctions(),
+);
+
 export type AuthState = {
   tokens: Tokens | undefined;
 };
-
-export type AuthorizeHeadersFunction = (headers: HeadersInit) => HeadersInit;
 
 export type AuthFunctions = {
   hasAuth: () => boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
-  authorizeHeaders: AuthorizeHeadersFunction;
+  getAuthState: () => AuthState;
+  refresh: () => Promise<Tokens | undefined>;
 };
-
-export const AuthContext = createContext<AuthFunctions>(
-  makeDummyAuthFunctions(),
-);
 
 export function useAuth() {
   return useContext(AuthContext);
@@ -33,9 +32,11 @@ function makeDummyAuthFunctions(): AuthFunctions {
     logout: async () => {
       throw new Error("*** Placeholder logout used");
     },
-    authorizeHeaders: (headers: HeadersInit): HeadersInit => {
-      return headers; // test support, the auth context doesn't update
-      throw new Error("*** Placeholder authorizeHeaders used");
+    getAuthState: () => {
+      return { tokens: undefined };
+    },
+    refresh: async (): Promise<Tokens | undefined> => {
+      return;
     },
   };
 }

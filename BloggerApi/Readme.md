@@ -3,8 +3,13 @@
 `dotnet run --project BloggerApi`
 
 Credentials:
-ivan@test
-123
+
+```json
+{
+  "email": "ivan@test",
+  "password": "123"
+}
+```
 
 # Docker
 

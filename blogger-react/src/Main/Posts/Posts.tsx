@@ -1,16 +1,15 @@
 import { useEffect } from "react";
 import {
-  createPost,
-  deletePost,
-  getPosts,
+  useCreatePost,
+  useDeletePost,
+  useGetPosts,
 } from "../../services/BloggerService";
 import Loading from "../../components/Loading";
-import "./Posts.css";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../services/AuthContext";
 import { strings, formatString } from "../../localization";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AnyError } from "../../services/Errors";
+import "./Posts.css";
 
 interface Props {
   selectedId: number | undefined;
@@ -22,30 +21,27 @@ interface Props {
 }
 
 function Posts({ selectedId, notifyError, updateTitleFuncProvider }: Props) {
-  const { authorizeHeaders } = useAuth();
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const getPosts = useGetPosts();
+  const createPost = useCreatePost();
+  const deletePost = useDeletePost();
 
   const postsQuery = useQuery({
     queryKey: ["posts"],
-    queryFn: async () => {
-      return await getPosts(authorizeHeaders);
-    },
+    queryFn: getPosts,
     retry: 0,
     throwOnError: true,
+    // staleTime: 1,
   });
 
   const createMutation = useMutation({
-    mutationFn: async (dto: { title: string; content: string }) => {
-      await createPost(dto, authorizeHeaders);
-    },
+    mutationFn: createPost,
     onSuccess: loadPosts,
   });
 
   const deleteMutation = useMutation({
-    mutationFn: async (id: number) => {
-      await deletePost(id, authorizeHeaders);
-    },
+    mutationFn: deletePost,
     onSuccess: () => {
       loadPosts();
       navigate("/");
@@ -96,6 +92,7 @@ function Posts({ selectedId, notifyError, updateTitleFuncProvider }: Props) {
     updateTitleFuncProvider(updateTitle);
   }, []);
 
+  // Propagate errors
   useEffect(() => {
     if (postsQuery.error) notifyError(postsQuery.error);
     if (createMutation.error) notifyError(createMutation.error);

@@ -1,36 +1,33 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AuthContext, AuthFunctions, AuthState } from "./AuthContext";
-import { loginApi, Tokens } from "./BloggerService";
+import { loginApi, refreshApi, Tokens } from "./BloggerService";
+import {
+  removeStoredTokens,
+  tryLoadStoredTokens,
+  updateTokens,
+} from "./tokenStorage";
 
 // https://dev.to/miracool/how-to-manage-user-authentication-with-react-js-3ic5
 
-function storeTokens(tokens: Tokens) {
-  window.localStorage.setItem("tokens", JSON.stringify(tokens));
-}
+// https://github.com/gitdagray/react_jwt_auth/blob/main/src/hooks/useAxiosPrivate.js
 
-function removeStoredTokens() {
-  window.localStorage.removeItem("tokens");
-}
-
-function tryLoadStoredTokens(): Tokens | undefined {
-  const storedTokensStr = window.localStorage.getItem("tokens");
-  let tokens: Tokens | undefined = undefined;
-  if (storedTokensStr) {
-    try {
-      tokens = JSON.parse(storedTokensStr);
-    } catch {
-      removeStoredTokens();
-    }
-  }
-  return tokens;
-}
-
-type AuthProviderProps = {children : React.ReactNode}
+type AuthProviderProps = { children: React.ReactNode };
 
 export default function AuthProvider(props: AuthProviderProps) {
   const [authState, setAuthState] = useState<AuthState>({
     tokens: tryLoadStoredTokens(),
   });
+
+  function handleNewTokens(newTokens: Tokens | undefined) {
+    updateTokens(newTokens);
+    setAuthState({ tokens: newTokens });
+  }
+
+  async function refresh(): Promise<Tokens | undefined> {
+    var newTokens = await refreshApi(authState.tokens!.refreshToken);
+    handleNewTokens(newTokens);
+    return newTokens;
+  }
 
   function hasAuth(): boolean {
     const missing = typeof authState.tokens === "undefined";
@@ -39,41 +36,23 @@ export default function AuthProvider(props: AuthProviderProps) {
 
   async function login(email: string, password: string) {
     const tokens = await loginApi(email, password);
-    storeTokens(tokens);
-    setAuthState({ tokens: tokens });
+    handleNewTokens(tokens);
   }
 
   async function logout() {
     removeStoredTokens();
-    setAuthState(() => {
-      return { tokens: undefined };
-    });
+    handleNewTokens(undefined);
   }
 
-  function authorizeHeaders(headers: HeadersInit): HeadersInit {
-    const tokens = authState.tokens;
-    if (!tokens) {
-      return headers;
-    }
-    const auth = tokens.tokenType + " " + tokens.accessToken;
-    return { ...headers, Authorization: auth };
-  }
-
-  const [authFunctions, setAuthFunctions] = useState<AuthFunctions>({
+  const authFunctions: AuthFunctions = {
     hasAuth: hasAuth,
     login: login,
     logout: logout,
-    authorizeHeaders: authorizeHeaders,
-  });
-
-  useEffect(() => {
-    setAuthFunctions({
-      hasAuth: hasAuth,
-      login: login,
-      logout: logout,
-      authorizeHeaders: authorizeHeaders,
-    });
-  }, [authState]);
+    getAuthState: () => {
+      return authState;
+    },
+    refresh: refresh,
+  };
 
   return (
     <AuthContext.Provider value={authFunctions}>

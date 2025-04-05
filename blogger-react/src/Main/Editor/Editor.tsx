@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import { PostFull, getPost, updatePost } from "../../services/BloggerService";
+import {
+  PostFull,
+  useGetPost,
+  useUpdatePost,
+} from "../../services/BloggerService";
 import Markdown from "react-markdown";
 import Loading from "../../components/Loading";
-import "./Editor.css";
-import { useAuth } from "../../services/AuthContext";
 import { strings } from "../../localization";
+import "./Editor.css";
 
 interface Props {
   postId: number;
@@ -19,12 +22,13 @@ function Editor({
 }: Props) {
   const [post, setPost] = useState<PostFull | undefined>();
   const [isLoading, setIsLoading] = useState(true);
-  const { authorizeHeaders } = useAuth();
+  const getPost = useGetPost();
+  const updatePost = useUpdatePost();
 
   async function loadPost() {
     setIsLoading(true);
     try {
-      const resPost = await getPost(postId, authorizeHeaders);
+      const resPost = await getPost(postId);
       setPost(resPost);
     } catch (err) {
       setPost(undefined);
@@ -65,7 +69,7 @@ function Editor({
     };
 
     try {
-      const resPost = await updatePost(updatedPost, authorizeHeaders);
+      const resPost = await updatePost(updatedPost);
       setPost(resPost);
 
       if (post.title !== resPost.title) {
