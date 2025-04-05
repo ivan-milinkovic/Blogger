@@ -2,7 +2,7 @@ import { afterEach, test } from "vitest";
 import { PostMini } from "../services/BloggerService";
 import { render, cleanup, waitFor } from "@testing-library/react";
 import "@testing-library/dom";
-import Posts from "../pages/Main/Posts/Posts";
+import Posts from "../Main/Posts/Posts";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 

@@ -1,12 +1,12 @@
 import Posts from "./Posts/Posts";
 import Editor from "./Editor/Editor";
-import Error from "../../components/Error";
+import Error from "../components/Error";
 import { useEffect, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Link, useParams } from "react-router";
-import { useAuth } from "../../services/AuthContext";
-import { strings } from "../../localization";
-import { AnyError, AuthError } from "../../services/Errors";
+import { useAuth } from "../services/AuthContext";
+import { strings } from "../localization";
+import { AnyError, AuthError } from "../services/Errors";
 
 export default function Main() {
   const [selectedId, setSelectedId] = useState<number | undefined>();
@@ -73,7 +73,9 @@ export default function Main() {
         fallbackRender={(props) => {
           return <Error error={props.error} />;
         }}
-        onError={(error) => { notifyError(error); }}
+        onError={(error) => {
+          notifyError(error);
+        }}
       >
         <Posts
           selectedId={selectedId}

@@ -6,13 +6,13 @@ import {
   createPost,
   deletePost,
   getPosts,
-} from "../../../services/BloggerService";
-import Loading from "../../../components/Loading";
+} from "../../services/BloggerService";
+import Loading from "../../components/Loading";
 import "./Posts.css";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../../services/AuthContext";
-import { strings, formatString } from "../../../localization";
-import { AnyError } from "../../../services/Errors";
+import { useAuth } from "../../services/AuthContext";
+import { strings, formatString } from "../../localization";
+import { AnyError } from "../../services/Errors";
 
 interface Props {
   selectedId: number | undefined;

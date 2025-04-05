@@ -47,7 +47,7 @@ function formatString(key: string, ...args: string[]): string {
   return result;
 }
 
-const LOCALE_KEY = "locale";
+const LOCALE_KEY = "blogger-locale";
 function setupSavedLocale() {
   const lang = window.localStorage.getItem(LOCALE_KEY);
   if (lang) {

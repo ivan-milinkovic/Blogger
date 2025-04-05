@@ -3,14 +3,14 @@ import {
   createPost,
   deletePost,
   getPosts,
-} from "../../../services/BloggerService";
-import Loading from "../../../components/Loading";
+} from "../../services/BloggerService";
+import Loading from "../../components/Loading";
 import "./Posts.css";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../../services/AuthContext";
-import { strings, formatString } from "../../../localization";
+import { useAuth } from "../../services/AuthContext";
+import { strings, formatString } from "../../localization";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { AnyError } from "../../../services/Errors";
+import { AnyError } from "../../services/Errors";
 
 interface Props {
   selectedId: number | undefined;
@@ -36,7 +36,7 @@ function Posts({ selectedId, notifyError, updateTitleFuncProvider }: Props) {
   });
 
   const createMutation = useMutation({
-    mutationFn: async (dto: {title:string, content: string}) => {
+    mutationFn: async (dto: { title: string; content: string }) => {
       await createPost(dto, authorizeHeaders);
     },
     onSuccess: loadPosts,
@@ -141,7 +141,9 @@ function Posts({ selectedId, notifyError, updateTitleFuncProvider }: Props) {
                   }}
                 >
                   <span>{post.title}</span>
-                  <span className="posts-list-post-id">&nbsp;(id: {post.id})</span>
+                  <span className="posts-list-post-id">
+                    &nbsp;(id: {post.id})
+                  </span>
                   <hr className="divider" />
                 </li>
               );

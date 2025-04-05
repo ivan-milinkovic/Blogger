@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react";
-import {
-  PostFull,
-  getPost,
-  updatePost,
-} from "../../../services/BloggerService";
+import { PostFull, getPost, updatePost } from "../../services/BloggerService";
 import Markdown from "react-markdown";
-import Loading from "../../../components/Loading";
+import Loading from "../../components/Loading";
 import "./Editor.css";
-import { useAuth } from "../../../services/AuthContext";
-import { strings } from "../../../localization";
+import { useAuth } from "../../services/AuthContext";
+import { strings } from "../../localization";
 
 interface Props {
   postId: number;

@@ -1,11 +1,11 @@
 import "./App.css";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router";
 import Header from "./Header";
-import Main from "../pages/Main/Main";
+import Main from "../Main/Main";
 import Footer from "./Footer";
 import Error from "../components/Error";
-import Login from "../pages/Login/Login";
-import Register from "../pages/Register/Register";
+import Login from "../Login/Login";
+import Register from "../Register/Register";
 import AuthProvider from "../services/AuthProvider";
 import { setupSavedLocale } from "../localization";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";

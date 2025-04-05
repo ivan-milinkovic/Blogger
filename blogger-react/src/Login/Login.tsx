@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
-import { useAuth } from "../../services/AuthContext";
-import { strings } from "../../localization";
+import { useAuth } from "../services/AuthContext";
+import { strings } from "../localization";
 
 function Login() {
   const navigate = useNavigate();
