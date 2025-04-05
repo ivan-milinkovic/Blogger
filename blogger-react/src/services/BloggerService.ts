@@ -1,7 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 import { API_URL, jsonHeaders } from "./ServiceCommon";
 import { useAuthApiAxios } from "./useAuthApiAxios";
-import { useCallback } from "react";
 
 export type Tokens = {
   tokenType: string;
