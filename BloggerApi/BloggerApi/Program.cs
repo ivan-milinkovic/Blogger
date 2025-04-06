@@ -21,6 +21,13 @@ builder.Services.AddDbContext<BlogsDbContext>(opts =>
 // builder.Services.AddAuthentication()
 //     .AddScheme<BasicAuthOptions, BasicAuthHandler>("MyBasicAuth", opt => { });
 
+// builder.Services.AddOptions<BearerTokenOptions>(IdentityConstants.BearerScheme)
+// .Configure(opt =>
+// {
+//     opt.BearerTokenExpiration = TimeSpan.FromSeconds(5);
+//     opt.RefreshTokenExpiration = TimeSpan.FromSeconds(10);
+// });
+
 builder.Services.AddAuthorization();
 builder.Services
     .AddIdentityApiEndpoints<AppIdentityUser>(opt =>
