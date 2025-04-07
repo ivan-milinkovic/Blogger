@@ -1,5 +1,5 @@
 import { afterEach, test } from "vitest";
-import { PostMini } from "../services/BloggerService";
+import { PostMini } from "../model/PostMini";
 import { render, cleanup, waitFor } from "@testing-library/react";
 import "@testing-library/dom";
 import Posts from "../Main/Posts/Posts";

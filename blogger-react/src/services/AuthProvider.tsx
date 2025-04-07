@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { AuthContext, AuthFunctions, AuthState } from "./AuthContext";
-import { loginApi, refreshApi, Tokens } from "./BloggerService";
+import { loginApi, refreshApi } from "./apiFunctions";
+
 import {
   removeStoredTokens,
   tryLoadStoredTokens,
   updateTokens,
 } from "./tokenStorage";
+import { Tokens } from "../model/Tokens";
 
 // https://dev.to/miracool/how-to-manage-user-authentication-with-react-js-3ic5
 

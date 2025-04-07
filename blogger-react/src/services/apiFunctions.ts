@@ -1,28 +1,9 @@
 import axios, { AxiosInstance } from "axios";
 import { API_URL, jsonHeaders } from "./ServiceCommon";
-import { useAuthApiAxios } from "./useAuthApiAxios";
-
-export type Tokens = {
-  tokenType: string;
-  accessToken: string;
-  refreshToken: string;
-};
-
-export type PostMini = {
-  id: number;
-  title: string;
-};
-
-export type PostFull = {
-  id: number;
-  title: string;
-  content: string;
-};
-
-export type PostCreateDto = {
-  title: string;
-  content: string;
-};
+import { Tokens } from "../model/Tokens";
+import { PostMini } from "../model/PostMini";
+import { PostFull } from "../model/PostFull";
+import { PostCreateDto } from "../model/PostCreateDto";
 
 export async function loginApi(
   email: string,
@@ -58,26 +39,12 @@ export async function refreshApi(refreshToken: string): Promise<Tokens> {
   return newTokens;
 }
 
-export function useGetPosts() {
-  const authorizedApiAxios = useAuthApiAxios();
-  return async (): Promise<PostMini[]> => {
-    return await getPosts(authorizedApiAxios);
-  };
-}
-
 export async function getPosts(axios: AxiosInstance): Promise<PostMini[]> {
   // await new Promise((resolve) => setTimeout(resolve, 1000)); // see the loader
   const url = API_URL + "/api/posts/list";
   const res = await axios.get(url);
   const resPosts = (await res.data) as PostMini[];
   return resPosts;
-}
-
-export function useGetPost() {
-  const authorizedApiAxios = useAuthApiAxios();
-  return async (id: number): Promise<PostFull> => {
-    return await getPost(authorizedApiAxios, id);
-  };
 }
 
 export async function getPost(
@@ -89,13 +56,6 @@ export async function getPost(
   const res = await axios.get(url);
   const resPost = (await res.data) as PostFull;
   return resPost;
-}
-
-export function useUpdatePost() {
-  const authorizedApiAxios = useAuthApiAxios();
-  return async (post: PostFull): Promise<PostFull> => {
-    return updatePost(authorizedApiAxios, post);
-  };
 }
 
 export async function updatePost(
@@ -116,13 +76,6 @@ export async function updatePost(
   return resPost;
 }
 
-export function useCreatePost() {
-  const authorizedApiAxios = useAuthApiAxios();
-  return async (postDto: PostCreateDto): Promise<PostFull> => {
-    return createPost(authorizedApiAxios, postDto);
-  };
-}
-
 export async function createPost(
   axios: AxiosInstance,
   postDto: PostCreateDto,
@@ -131,13 +84,6 @@ export async function createPost(
   const res = await axios.post(url, JSON.stringify(postDto));
   const resPost = (await res.data) as PostFull;
   return resPost;
-}
-
-export function useDeletePost() {
-  const authorizedApiAxios = useAuthApiAxios();
-  return async (postId: number) => {
-    return deletePost(authorizedApiAxios, postId);
-  };
 }
 
 export async function deletePost(axios: AxiosInstance, postId: number) {

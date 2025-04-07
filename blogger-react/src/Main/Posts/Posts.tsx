@@ -3,7 +3,7 @@ import {
   useCreatePost,
   useDeletePost,
   useGetPosts,
-} from "../../services/BloggerService";
+} from "../../services/apiHooks";
 import Loading from "../../components/Loading";
 import { useNavigate } from "react-router";
 import { strings, formatString } from "../../localization";

@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
-import {
-  PostFull,
-  useGetPost,
-  useUpdatePost,
-} from "../../services/BloggerService";
+import { useGetPost, useUpdatePost } from "../../services/apiHooks";
 import Markdown from "react-markdown";
 import Loading from "../../components/Loading";
 import { strings } from "../../localization";
 import "./Editor.css";
+import { PostFull } from "../../model/PostFull";
 
 interface Props {
   postId: number;

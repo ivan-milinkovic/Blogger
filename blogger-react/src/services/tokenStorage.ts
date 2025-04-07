@@ -1,4 +1,4 @@
-import { Tokens } from "./BloggerService";
+import { Tokens } from "../model/Tokens";
 
 const TokensKey = "blogger-tokens";
 

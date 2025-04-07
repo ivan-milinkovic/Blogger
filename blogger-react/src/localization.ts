@@ -2,6 +2,7 @@ import LocalizedStrings from "react-localization";
 
 const strings = new LocalizedStrings({
   en: {
+    title: "Blogger",
     loading: "Loading...",
     confirmDeletion: "Really delete {0} (id: {1})?",
     newPostTitle: "New",
@@ -18,6 +19,7 @@ const strings = new LocalizedStrings({
     loginPasswordLabel: "Password",
   },
   sr: {
+    title: "Блогер",
     loading: "Учитавање...",
     confirmDeletion: "Заиста обрисати {0} (id: {1})?",
     newPostTitle: "Нови",

@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { Tokens } from "./BloggerService";
+import { Tokens } from "../model/Tokens";
 
 export const AuthContext = createContext<AuthFunctions>(
   makeDummyAuthFunctions(),

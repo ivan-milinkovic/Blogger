@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <header className="header">
       <div className="header-row">
-        <h1 className="header-name">Blogger</h1>
+        <h1 className="header-name">{strings.title}</h1>
         <AuthSection />
       </div>
       <hr className="divider" />
