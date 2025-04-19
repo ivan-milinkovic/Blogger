@@ -11,5 +11,5 @@ RUN dotnet publish BloggerApi.csproj -c $BUILD_CONFIGURATION -o /BloggerApiPubli
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /BloggerApi
 COPY --from=build /BloggerApiPublish .
-COPY ./Database /BloggerApiPublish
+COPY ./Database /BloggerApi/Database
 ENTRYPOINT ["dotnet", "BloggerApi.dll"]

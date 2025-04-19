@@ -4,6 +4,7 @@ services:
     # becomes blogger-api
     build:
       context: ./BloggerApi/BloggerApi
+      # dockerfile: DockerfileBundleDb # comment out volumes
     ports:
       - 8000:8080
     volumes:
